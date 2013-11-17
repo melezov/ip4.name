@@ -1,0 +1,24 @@
+server {
+  listen www.ip4.name:80;
+  server_name .ip4.name;
+
+  access_log /var/www/ip4.name/logs/nginx/access.log;
+  error_log /var/www/ip4.name/logs/nginx/error.log;
+
+  location ~ ^/(?:favicon\.ico|robots\.txt)$ {
+    root       /var/www/ip4.name/static;
+    expires    30d;
+  }
+
+  location ~ ^/static/.+$ {
+    root       /var/www/ip4.name;
+    expires    30d;
+  }
+
+  location / {
+    proxy_pass http://localhost:8088;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $remote_addr;
+    proxy_set_header X-Forwarded-Proto http;
+  }
+}

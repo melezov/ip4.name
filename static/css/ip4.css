@@ -1,0 +1,9 @@
+body {
+  background: white;
+}
+
+#ip {
+  color: white;
+  display: none;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+}

@@ -1,0 +1,25 @@
+Listen 8088
+
+<VirtualHost localhost:8088>
+  ServerName ip4.name
+  ServerAlias *.ip4.name
+
+  ServerAdmin admin@ip4.name
+
+  DocumentRoot /var/www/ip4.name/php
+  <Directory /var/www/ip4.name/php>
+    # IGNORE .htaccess
+    AllowOverride none
+
+    # REWRITE CONF
+    RewriteEngine on
+    RewriteBase /
+
+    # MONOLITHIC CONTROLER
+    RewriteRule .* index.php [L]
+  </Directory>
+
+  CustomLog /var/www/ip4.name/logs/apache2/access.log combined
+  ErrorLog /var/www/ip4.name/logs/apache2/error.log
+
+</VirtualHost>
